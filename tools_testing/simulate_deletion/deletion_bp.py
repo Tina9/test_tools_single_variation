@@ -23,9 +23,9 @@ def deletion_bp(bp, raw_fasta):
     pos_bp = random.randint(0, 40000)
     raw_base = info[pos_bp : (pos_bp + int(bp))]
     new_info = info[:(pos_bp - 1)] + info[(pos_bp + int(bp)):]
-    with open(new_fasta, 'w') as fr:
-        fr.write(ref)
-        fr.write(new_info)
+    with open(new_fasta, 'w') as fw:
+        fw.write(ref)
+        fw.write(new_info)
 
     ###### use the dictionary to save the variated information ######
     info_record = {}

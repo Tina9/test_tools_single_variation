@@ -4,12 +4,10 @@
 __authore__ = "zhangxu"
 
 import os
-import subprocess
 from docopt import docopt
 from produce_fa import produce_fasta
 from art_produce_fq import produce_fq
 from deletion_bp import deletion_bp
-from art_produce_fq import produce_fq
 from merge_file import merge_file
 
 def info_sorting(sum_info):

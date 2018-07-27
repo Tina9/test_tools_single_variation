@@ -1,2 +1,0 @@
-Frequency	Type	Var_Type	Interval	Raw	New
-1	Deletion	1bp	33077-33078	G	-

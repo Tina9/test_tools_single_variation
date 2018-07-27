@@ -22,10 +22,10 @@ def merge_sorting(fastq, sum_fq):
 
 def merge_file(files):
 
-    sum_fq1 = "./data/simulate1.fq"
-    sum_fq2 = "./data/simulate2.fq"
-
     fastq1, fastq2 = file_sort(files)
+
+    sum_fq1 = "/".join(fastq1[0].split("/")[:2]) + "/" + "simulate_" + "_".join((fastq1[0].split("/")[-1]).split("_")[1:])
+    sum_fq2 = "/".join(fastq2[0].split("/")[:2]) + "/" + "simulate_" + "_".join((fastq2[0].split("/")[-1]).split("_")[1:])
 
     merge_sorting(fastq1, sum_fq1)
     merge_sorting(fastq2, sum_fq2)

@@ -2,7 +2,7 @@ import sys
 sys.path.append("../tools_testing/simulate_deletion")
 from merge_file import merge_file
 
-files = ["./data/multiple", "./data/single"]
+files = ["./data/multiple_0_1bp_", "./data/single_0_1bp_"]
 
 def test_merge_files():
     

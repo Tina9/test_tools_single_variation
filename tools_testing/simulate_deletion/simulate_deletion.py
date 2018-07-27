@@ -4,7 +4,10 @@
 __authore__ = "zhangxu"
 
 import os
+import sys
 from docopt import docopt
+sdir = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, sdir)
 from produce_fa import produce_fasta
 from art_produce_fq import produce_fq
 from deletion_bp import deletion_bp
@@ -30,20 +33,24 @@ def info_sorting(sum_info):
             cont = str(Frequency) + "\t" + Type + "\t" + Var_Type + "\t" + Interval + "\t" + Raw + "\t" + New + "\n"
             fw.write(cont)
 
-def main_function(arguments):
+def parse_parameters(arguments):
 
     reads_length = arguments['--length']
-    multiple_count = int(arguments['--count']) * (1 - float(arguments['MULTIPLE']))    
+    multiple_count = int(arguments['--count']) * (1 - float(arguments['MULTIPLE']))
     single_count = int(arguments['--count']) * float(arguments['MULTIPLE'])
     bp = arguments['--basepair']
     repeat_time = arguments['--times']
+
+    return reads_length, multiple_count, single_count, bp, repeat_time
+
+def main_deletion(reads_length, multiple_count, single_count, bp, repeat_time):
 
     sum_info = {}
     for ti in range(int(repeat_time)):
         raw_fasta_prefix = "raw_deletion_" + str(ti+1)
         raw_fasta = produce_fasta(raw_fasta_prefix)
-        multiple_output = "/".join(raw_fasta.split("/")[:2]) + "/multiple"
-        single_output = "/".join(raw_fasta.split("/")[:2]) + "/single"
+        multiple_output = "/".join(raw_fasta.split("/")[:2]) + "/multiple" + '_' + str(ti) + '_' + str(bp) + "bp" + "_" 
+        single_output = "/".join(raw_fasta.split("/")[:2]) + "/single" + '_' + str(ti) + '_' + str(bp) + "bp" + "_"
         produce_fq(raw_fasta, reads_length, multiple_count, multiple_output)
         info_record = deletion_bp(bp, raw_fasta)
         new_fasta = info_record['fasta']
@@ -55,6 +62,17 @@ def main_function(arguments):
         ### add tools to be tested here ###
 
         ###################################
+
+def parse_parameters(arguments):
+
+    reads_length = arguments['--length']
+    multiple_count = int(arguments['--count']) * (1 - float(arguments['MULTIPLE']))
+    single_count = int(arguments['--count']) * float(arguments['MULTIPLE'])
+    bp = arguments['--basepair']
+    repeat_time = arguments['--times']
+
+    ###### use the function to test tools ######
+    main_deletion(reads_length, multiple_count, single_count, bp, repeat_time)
 
 if __name__ == "__main__":
     usage = """
@@ -70,10 +88,9 @@ if __name__ == "__main__":
         -h --help
         -l,--length=150         reads length of simulated fasta [default: 150]
         -c,--count=100000       number of reads/read pairs [default: 100000]
-        -b,--basepair=1         the deleted base [default: 1] 
+        -b,--basepair=1         the length of deleted bases [default: 1] 
         -t,--times=1            the repeat time [default: 1]
     """
     
     arguments = docopt(usage)
-    main_function(arguments)
-    
+    parse_parameters(arguments) 

@@ -4,7 +4,10 @@
 __author__ = "zhangxu"
 
 import os 
+import sys
 from docopt import docopt
+sdir = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, sdir)
 from produce_fa import produce_fasta
 from art_produce_fq import produce_fq
 from insertion_bp import insertion_bp
@@ -30,7 +33,7 @@ def info_sorting(sum_info):
             cont = str(Frequency) + "\t" + Type + "\t" + Var_Type + "\t" + Interval + "\t" + Raw + "\t" + New + "\n"
             fw.write(cont)
 
-def main_function(arguments):
+def main_insertion(arguments):
 
     reads_length = arguments['--length']
     multiple_count = int(arguments['--count']) * (1 - float(arguments['MULTIPLE']))
@@ -59,20 +62,20 @@ def main_function(arguments):
 if __name__ == "__main__":
     usage = """
     Usage:
-        simulate_deletion.py [-l=150] [-c=100000] [-b=1] [-t=1] MULTIPLE
+        simulate_insertion.py [-l=150] [-c=100000] [-b=1] [-t=1] MULTIPLE
 
-    Testing different tool on different raw-fasta-based deletion variation
+    Testing different tool on different raw-fasta-based insertion variation
 
     Arguments:
-        MULTIPLE        the proportion of deleted-variation fastas in all fastas
+        MULTIPLE        the proportion of inserted-variation fastas in all fastas
 
     Options:
         -h --help
         -l,--length=150         reads length of simulated fasta [default: 150]
         -c,--count=100000       number of reads/read pairs [default: 100000]
-        -b,--basepair=1         the inserted base [default: 1]
+        -b,--basepair=1         the length of inserted bases [default: 1]
         -t,--times=1            the repeat time [default: 1]
     """
 
     arguments = docopt(usage)
-    main_function(arguments)
+    main_insertion(arguments)

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8 -8_
 
+import os
+
 def file_sort(files):
 
     fastq1 = []
@@ -19,6 +21,8 @@ def merge_sorting(fastq, sum_fq):
         for i in fastq:
             with open(i, 'r') as fr:
                 fw.write(fr.read())
+
+            os.remove(i)
 
 def merge_file(files):
 

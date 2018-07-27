@@ -33,15 +33,7 @@ def info_sorting(sum_info):
             cont = str(Frequency) + "\t" + Type + "\t" + Var_Type + "\t" + Interval + "\t" + Raw + "\t" + New + "\n"
             fw.write(cont)
 
-def parse_parameters(arguments):
-
-    reads_length = arguments['--length']
-    multiple_count = int(arguments['--count']) * (1 - float(arguments['MULTIPLE']))
-    single_count = int(arguments['--count']) * float(arguments['MULTIPLE'])
-    bp = arguments['--basepair']
-    repeat_time = arguments['--times']
-
-    return reads_length, multiple_count, single_count, bp, repeat_time
+    return del_sum_info
 
 def main_deletion(reads_length, multiple_count, single_count, bp, repeat_time):
 
@@ -49,19 +41,23 @@ def main_deletion(reads_length, multiple_count, single_count, bp, repeat_time):
     for ti in range(int(repeat_time)):
         raw_fasta_prefix = "raw_deletion_" + str(ti+1)
         raw_fasta = produce_fasta(raw_fasta_prefix)
-        multiple_output = "/".join(raw_fasta.split("/")[:2]) + "/multiple" + '_' + str(ti) + '_' + str(bp) + "bp" + "_" 
-        single_output = "/".join(raw_fasta.split("/")[:2]) + "/single" + '_' + str(ti) + '_' + str(bp) + "bp" + "_"
+        multiple_output = "/".join(raw_fasta.split("/")[:2]) + "/multiple" + '_' + str(ti+1) + '_del_' + str(bp) + "bp" + "_" 
+        single_output = "/".join(raw_fasta.split("/")[:2]) + "/single" + '_' + str(ti+1) + '_del_' + str(bp) + "bp" + "_"
         produce_fq(raw_fasta, reads_length, multiple_count, multiple_output)
         info_record = deletion_bp(bp, raw_fasta)
         new_fasta = info_record['fasta']
         produce_fq(new_fasta, reads_length, single_count, single_output)
         files = [multiple_output, single_output]
         fq1, fq2 = merge_file(files)
+        info_record['fq1'] = fq1
+        info_record['fq2'] = fq2
         sum_info[(ti+1)] = info_record
-        info_sorting(sum_info)
+        del_sum_info = info_sorting(sum_info)
         ### add tools to be tested here ###
 
         ###################################
+    
+    return sum_info, del_sum_info
 
 def parse_parameters(arguments):
 

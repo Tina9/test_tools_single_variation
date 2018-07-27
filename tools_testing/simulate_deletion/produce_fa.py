@@ -7,7 +7,7 @@ import random
 def produce_fasta(prefix):
     
     if not os.path.exists("./data"):
-        print("========creat the directory called data========")
+        print("    ====  creat the directory called data  ====")
         os.mkdir("./data")
 
     fasta_name = "./data/" + prefix + ".fa"

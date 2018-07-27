@@ -6,6 +6,7 @@ __author__ = "zhangxu"
 import sys
 import os
 from docopt import docopt
+import concurrent.futures
 dirpath = os.path.join(os.path.dirname(os.path.abspath(__file__)),"../tools_testing")
 sys.path.insert(0, dirpath)
 from simulate_duplication.simulate_duplication import main_duplication
@@ -17,28 +18,41 @@ from simulate_replacement.simulate_replacement import main_replacement
 def call_functions(arguments):
 
     reads_length = arguments['--length']
-    bp = arguments['--count']
+    reads_count = arguments['--count']
+    bp = arguments['--basepair']
     repeat_time = arguments['--times']
     copy_number = arguments['--copys']
     max_worker = arguments['--thread']
 
     if arguments['--dup']:
         dup_ratio = arguments['--dup']
-        dup_multiple_count = int(dup_ratio) * (1 - float(dup_ratio))
-        dup_single_count = int(dup_ratio) * float(dup_ratio)
-        main_deletion(reads_length, del_multiple_count, del_single_count, bp, repeat_time)
+        dup_multiple_count = int(reads_count) * (1 - float(dup_ratio))
+        dup_single_count = int(reads_count) * float(dup_ratio)
+        dup_info_reocrd, del_sum_info = main_duplication(reads_length, dup_multiple_count, dup_single_count, bp, repeat_time, copy_number)
 
     if arguments['--del']:
         del_ratio = arguments['--del']
+        del_multiple_count = int(reads_count) * (1 - float(del_ratio))
+        del_single_count = int(reads_count) * float(del_ratio)
+        del_info_record, del_sum_info = main_deletion(reads_length, del_multiple_count, del_single_count, bp, repeat_time)
 
     if arguments['--ins']:
         ins_ratio = arguments['--ins']
+        ins_multiple_count = int(reads_count) * (1 - float(ins_ratio))
+        ins_single_count = int(reads_count) * float(ins_ratio)
+        ins_info_record, ins_sum_info = main_insertion(reads_length, ins_multiple_count, ins_single_count, bp, repeat_time)
 
     if arguments['--inv']:
         inv_ratio = arguments['--inv']
+        inv_multiple_count = int(reads_count) * (1 - float(inv_ratio))
+        inv_single_count = int(reads_count) * float(inv_ratio)
+        inv_info_record, inv_sum_info = main_inversion(reads_length, inv_multiple_count, inv_single_count, bp, repeat_time)
 
     if arguments['--rep']:
         rep_ratio = arguments['--rep']
+        rep_multiple_count = int(reads_count) * (1 - float(rep_ratio))
+        rep_single_count = int(reads_count) * float(rep_ratio)
+        rep_info_record, rep_sum_info = main_replacement(reads_length, rep_multiple_count, rep_single_count, bp, repeat_time)
 
 def main_function(arguments):
     
@@ -67,5 +81,7 @@ if __name__ == "__main__":
     """
 
     arguments = docopt(usage)
-    main_function(arguments)
+
+    executor = concurrent.futures.ProcessPoolExecutor(max_workers=4)
+    future = executor.submit(main_function, arguments)
 

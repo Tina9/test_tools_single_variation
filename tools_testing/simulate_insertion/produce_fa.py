@@ -1,1 +1,0 @@
-../simulate_deletion/produce_fa.py

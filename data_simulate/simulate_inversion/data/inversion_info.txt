@@ -1,0 +1,2 @@
+Frequency	Type	Var_Type	Interval	Raw	New
+1	Inversion	1bp	9355-9356	T	A

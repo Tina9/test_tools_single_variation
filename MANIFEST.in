@@ -1,0 +1,2 @@
+recursive-include data_simulate *.html *.css
+include LICENSE.txt

@@ -22,13 +22,12 @@ def call_functions(arguments):
     bp = arguments['--basepair']
     repeat_time = arguments['--times']
     copy_number = arguments['--copys']
-    max_worker = arguments['--thread']
 
     if arguments['--dup']:
         dup_ratio = arguments['--dup']
         dup_multiple_count = int(reads_count) * (1 - float(dup_ratio))
         dup_single_count = int(reads_count) * float(dup_ratio)
-        dup_info_reocrd, del_sum_info = main_duplication(reads_length, dup_multiple_count, dup_single_count, bp, repeat_time, copy_number)
+        dup_info_reocrd, dup_sum_info = main_duplication(reads_length, dup_multiple_count, dup_single_count, bp, repeat_time, copy_number)
 
     if arguments['--del']:
         del_ratio = arguments['--del']
@@ -54,6 +53,11 @@ def call_functions(arguments):
         rep_single_count = int(reads_count) * float(rep_ratio)
         rep_info_record, rep_sum_info = main_replacement(reads_length, rep_multiple_count, rep_single_count, bp, repeat_time)
 
+    ### get all the info file ###
+    sum_info = [dup_sum_info, del_sum_info, ins_sum_info, inv_sum_info, rep_sum_info] 
+
+    print(sum_info)
+
 def main_function(arguments):
     
     call_functions(arguments)
@@ -61,7 +65,7 @@ def main_function(arguments):
 if __name__ == "__main__":
     usage = """
     Usage:
-        main_process.py [-l=150] [-c=100000] [-b=1] [-t=1] [-p=1] [-d=1] [--dup <dup-ratio>] [--del <del-ratio>] [--ins <ins-ratio>] [--inv <inv-ratio>] [--rep <rep-ratio>]
+        main_process.py [-l=150] [-c=100000] [-b=1] [-t=1] [-p=1] [-d=4] [--dup <dup-ratio>] [--del <del-ratio>] [--ins <ins-ratio>] [--inv <inv-ratio>] [--rep <rep-ratio>]
 
     Testing different tools on different raw-fasta-based variations
 
@@ -72,7 +76,7 @@ if __name__ == "__main__":
         -b,--basepair=1             the length of variated bases [default: 1]
         -p,--copys=1                the copy number variation of duplication [default: 1]
         -t,--times=1                the repeat time [default: 1]
-        -d,--thread=1               the worker threads
+        -d,--thread=1               the worker threads [default: 4]
         --dup <dup-ratio>           the proportion of duplicated-variation reads in all reads
         --del <del-ratio>           the propertion of deleted-variation reads in all reads
         --ins <ins-ratio>           the propertion of inserted-variation reads in all reads
@@ -82,6 +86,7 @@ if __name__ == "__main__":
 
     arguments = docopt(usage)
 
-    executor = concurrent.futures.ProcessPoolExecutor(max_workers=4)
+    worker_num = int(arguments['--thread'])
+    executor = concurrent.futures.ProcessPoolExecutor(max_workers=worker_num)
     future = executor.submit(main_function, arguments)
 

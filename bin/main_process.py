@@ -65,7 +65,7 @@ def main_function(arguments):
 if __name__ == "__main__":
     usage = """
     Usage:
-        main_process.py [-l=150] [-c=100000] [-b=1] [-t=1] [-p=1] [-d=4] [--dup <dup-ratio>] [--del <del-ratio>] [--ins <ins-ratio>] [--inv <inv-ratio>] [--rep <rep-ratio>]
+        main_process.py [-l=150] [-c=100000] [-b=1] [-t=1] [-p=1] [-d=1] [--dup <dup-ratio>] [--del <del-ratio>] [--ins <ins-ratio>] [--inv <inv-ratio>] [--rep <rep-ratio>]
 
     Testing different tools on different raw-fasta-based variations
 
@@ -76,7 +76,7 @@ if __name__ == "__main__":
         -b,--basepair=1             the length of variated bases [default: 1]
         -p,--copys=1                the copy number variation of duplication [default: 1]
         -t,--times=1                the repeat time [default: 1]
-        -d,--thread=1               the worker threads [default: 4]
+        -d,--thread=1               the worker threads [default: 1]
         --dup <dup-ratio>           the proportion of duplicated-variation reads in all reads
         --del <del-ratio>           the propertion of deleted-variation reads in all reads
         --ins <ins-ratio>           the propertion of inserted-variation reads in all reads

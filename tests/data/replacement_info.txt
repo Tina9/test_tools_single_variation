@@ -1,3 +1,0 @@
-Frequency	Type	Var_Type	Interval	Raw	New	fasta	fq1	fq2
-1	Replacement	3bp	24625-24628	ACA	GAG	./data/raw_replacement_1_3bp.fa	./data/simulate_1_rep_3bp_1.fq	./data/simulate_1_rep_3bp_2.fq
-2	Replacement	3bp	17272-17275	AGT	ACA	./data/raw_replacement_2_3bp.fa	./data/simulate_2_rep_3bp_1.fq	./data/simulate_2_rep_3bp_2.fq

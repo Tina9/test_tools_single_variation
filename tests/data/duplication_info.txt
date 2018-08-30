@@ -1,3 +1,0 @@
-Frequency	Type	Var_Type	Interval	Raw	New	fasta	fq1	fq2
-1	Duplication	3bp	961-964	CAC	CACCAC	./data/raw_duplication_1_3bp.fa	./data/simulate_1_dup_3bp_1.fq	./data/simulate_1_dup_3bp_2.fq
-2	Duplication	3bp	3603-3606	ACC	ACCACC	./data/raw_duplication_2_3bp.fa	./data/simulate_2_dup_3bp_1.fq	./data/simulate_2_dup_3bp_2.fq

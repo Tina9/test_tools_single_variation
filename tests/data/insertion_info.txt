@@ -1,0 +1,3 @@
+Frequency	Type	Var_Type	Interval	Raw	New	fasta	fq1	fq2
+1	Insertion	3bp	5813-5816	-	GTG	./data/raw_insertion_1_3bp.fa	./data/simulate_1_ins_3bp_1.fq	./data/simulate_1_ins_3bp_2.fq
+2	Insertion	3bp	18616-18619	-	TGC	./data/raw_insertion_2_3bp.fa	./data/simulate_2_ins_3bp_1.fq	./data/simulate_2_ins_3bp_2.fq

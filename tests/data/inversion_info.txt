@@ -1,0 +1,3 @@
+Frequency	Type	Var_Type	Interval	Raw	New	fasta	fq1	fq2
+1	Inversion	3bp	17050-17053	CAC	GTG	./data/raw_inversion_1_3bp.fa	./data/simulate_1_inv_3bp_1.fq	./data/simulate_1_inv_3bp_2.fq
+2	Inversion	3bp	25488-25491	GGT	ACC	./data/raw_inversion_2_3bp.fa	./data/simulate_2_inv_3bp_1.fq	./data/simulate_2_inv_3bp_2.fq

@@ -7,7 +7,7 @@ import sys
 import os
 from docopt import docopt
 import concurrent.futures
-dirpath = os.path.join(os.path.dirname(os.path.abspath(__file__)),"../tools_testing")
+dirpath = os.path.join(os.path.dirname(os.path.abspath(__file__)),"../data_simulate")
 sys.path.insert(0, dirpath)
 from simulate_duplication.simulate_duplication import main_duplication
 from simulate_deletion.simulate_deletion import main_deletion

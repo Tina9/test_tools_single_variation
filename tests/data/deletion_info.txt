@@ -1,0 +1,3 @@
+Frequency	Type	Var_Type	Interval	Raw	New	fasta	fq1	fq2
+1	Deletion	3bp	37491-37494	TCT	-	./data/raw_deletion_1_3bp.fa	./data/simulate_1_del_3bp_1.fq	./data/simulate_1_del_3bp_2.fq
+2	Deletion	3bp	607-610	ATC	-	./data/raw_deletion_2_3bp.fa	./data/simulate_2_del_3bp_1.fq	./data/simulate_2_del_3bp_2.fq

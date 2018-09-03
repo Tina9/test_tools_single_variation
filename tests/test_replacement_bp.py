@@ -1,9 +1,9 @@
 import sys
-sys.path.append("../tools_testing/simulate_replacement/")
+sys.path.append("../data_simulate/simulate_replacement/")
 from replacement_bp import replacement_bp
 
 bp = 10
-raw_fasta = "./data/raw_insertion_1.fa"
+raw_fasta = "./data/simulate_data.fa"
 
 def test_replacement_bp():
     

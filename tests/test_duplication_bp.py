@@ -1,9 +1,9 @@
 import sys
-sys.path.append("../tools_testing/simulate_duplication/")
+sys.path.append("../data_simulate/simulate_duplication/")
 from duplication_bp import duplication_bp
 
 bp = 10
-raw_fasta = "./data/raw_duplication_1.fa" 
+raw_fasta = "./data/simulate_data.fa" 
 
 def test_duplication_bp():
     

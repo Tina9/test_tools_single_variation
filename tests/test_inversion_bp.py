@@ -1,9 +1,9 @@
 import sys
-sys.path.append("../tools_testing/simulate_inversion/")
+sys.path.append("../data_simulate/simulate_inversion/")
 from inversion_bp import inversion_bp
 
 bp = 10
-raw_fasta = "/Users/xu/data/5.2_single_simulated_data/tests/data/raw_inversion_1.fa"
+raw_fasta = "./data/simulate_data.fa"
 
 def test_inversion_bp():
     

@@ -1,5 +1,5 @@
 import sys
-sys.path.append("../tools_testing/simulate_deletion")
+sys.path.append("../data_simulate/simulate_deletion")
 from merge_file import merge_file
 
 files = ["./data/multiple_0_1bp_", "./data/single_0_1bp_"]

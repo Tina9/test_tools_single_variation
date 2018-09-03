@@ -1,8 +1,8 @@
 import sys
-sys.path.append("../tools_testing/simulate_deletion")
+sys.path.append("../data_simulate/simulate_deletion")
 from deletion_bp import deletion_bp
 
-raw_fasta = "./data/raw_deletion_10.fa"
+raw_fasta = "./data/simulate_data.fa"
 bp = 10
 
 def test_deletion_bp():

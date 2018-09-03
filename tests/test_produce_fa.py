@@ -1,5 +1,5 @@
 import sys
-sys.path.append("../tools_testing/simulate_deletion/")
+sys.path.append("../data_simulate/simulate_deletion/")
 from produce_fa import produce_fasta
 
 test = "simulate_data"

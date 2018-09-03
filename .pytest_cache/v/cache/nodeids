@@ -1,0 +1,10 @@
+[
+  "tests/test_art_produce_fq.py::test_multiple_fq",
+  "tests/test_deletion_bp.py::test_deletion_bp",
+  "tests/test_duplication_bp.py::test_duplication_bp",
+  "tests/test_insertion_bp.py::test_insertion_bp",
+  "tests/test_inversion_bp.py::test_inversion_bp",
+  "tests/test_merge_file.py::test_merge_files",
+  "tests/test_produce_fa.py::test_produce_fasta",
+  "tests/test_replacement_bp.py::test_replacement_bp"
+]

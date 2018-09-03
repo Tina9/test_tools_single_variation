@@ -1,9 +1,9 @@
 import sys
-sys.path.append("../tools_testing/simulate_insertion/")
+sys.path.append("../data_simulate/simulate_insertion/")
 from insertion_bp import insertion_bp
 
 bp = 10
-raw_fasta = "/Users/xu/data/5.2_single_simulated_data/tests/data/raw_insertion_1.fa"
+raw_fasta = "./data/simulate_data.fa"
 
 def test_insertion_bp():
     

@@ -23,11 +23,15 @@ def call_functions(arguments):
     repeat_time = arguments['--times']
     copy_number = arguments['--copys']
 
+    sum_info = []
+
     if arguments['--dup']:
         dup_ratio = arguments['--dup']
         dup_multiple_count = int(reads_count) * (1 - float(dup_ratio))
         dup_single_count = int(reads_count) * float(dup_ratio)
         dup_info_reocrd, dup_sum_info = main_duplication(reads_length, dup_multiple_count, dup_single_count, bp, repeat_time, copy_number)
+
+        sum_info.append(dup_info_reocrd)
 
     if arguments['--del']:
         del_ratio = arguments['--del']
@@ -35,11 +39,15 @@ def call_functions(arguments):
         del_single_count = int(reads_count) * float(del_ratio)
         del_info_record, del_sum_info = main_deletion(reads_length, del_multiple_count, del_single_count, bp, repeat_time)
 
+        sum_info.append(del_info_record)
+
     if arguments['--ins']:
         ins_ratio = arguments['--ins']
         ins_multiple_count = int(reads_count) * (1 - float(ins_ratio))
         ins_single_count = int(reads_count) * float(ins_ratio)
         ins_info_record, ins_sum_info = main_insertion(reads_length, ins_multiple_count, ins_single_count, bp, repeat_time)
+
+        sum_info.append(ins_info_record)
 
     if arguments['--inv']:
         inv_ratio = arguments['--inv']
@@ -47,20 +55,24 @@ def call_functions(arguments):
         inv_single_count = int(reads_count) * float(inv_ratio)
         inv_info_record, inv_sum_info = main_inversion(reads_length, inv_multiple_count, inv_single_count, bp, repeat_time)
 
+        sum_info.append(inv_info_record)
+
     if arguments['--rep']:
         rep_ratio = arguments['--rep']
         rep_multiple_count = int(reads_count) * (1 - float(rep_ratio))
         rep_single_count = int(reads_count) * float(rep_ratio)
         rep_info_record, rep_sum_info = main_replacement(reads_length, rep_multiple_count, rep_single_count, bp, repeat_time)
 
-    ### get all the info file ###
-    sum_info = [dup_sum_info, del_sum_info, ins_sum_info, inv_sum_info, rep_sum_info] 
+        sum_info.append(rep_info_record)
 
-    print(sum_info)
+    return sum_info
+
 
 def main_function(arguments):
     
-    call_functions(arguments)
+    sum_info = call_functions(arguments)
+
+    return sum_info
 
 if __name__ == "__main__":
     usage = """
